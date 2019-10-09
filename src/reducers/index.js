@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-// Reducers are functions that take in an action and decide how to mutate 
-// existing data
+// Reducers are functions that take in an action and decide how to render 
+// existing data. Do NOT mutate the orignal data
 const songsReducer = () => {
     return [
       { title: 'No Scrubs', duration: '4:05' },
@@ -14,14 +14,16 @@ const songsReducer = () => {
   // *** the 1st argument of a reducer needs a Default value or its value will be Undefined ***
 const selectedSongReducer = (selectedSong=null, action) => {
     if(action.type === "SONG_SELECTED"){
-        // how to mutate the data. DO NOT mutate orig. data!
+        // how to change the data. DO NOT mutate orig. data!
         return action.payload
     }
-    // if there is nothing to mutate then just return it
+    // if there are no changes then just return it
     return selectedSong
 };
 
+// the data/state to be passed to the rest of the app
 export default combineReducers({
     songs: songsReducer,
     selectedSong: selectedSongReducer
 });
+

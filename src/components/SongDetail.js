@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-const SongDetail = ( { song } ) => {
-    console.log(song)
-    if(!song) {
+const SongDetail = ( { clickedSong } ) => {
+    if(!clickedSong) {
         return <div>Select a song</div>
     }
 
@@ -11,15 +10,17 @@ const SongDetail = ( { song } ) => {
         <div>
             <h3>Details for:</h3>
             <p>
-                Title: {song.title}<br />
-                Duration: {song.duration}
+                Title: {clickedSong.title}<br />
+                Duration: {clickedSong.duration}
             </p>
         </div>
     )
 };
 
+// Withdraws a State from the Store this Obj returned is the 'props'
 const mapStateToProps = (state) => {
-    return { song: state.selectedSong }
+    return { clickedSong: state.selectedSong }
 }
 
+// Connect() always needs to be where State is needed
 export default connect(mapStateToProps)(SongDetail);
